@@ -1,13 +1,22 @@
 const puppeteer = require("puppeteer");
 
-(async () => {
-    console.log('opening browser');
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto("https://dorshinar.me");
-    console.log(await page.title());
+describe("testing testing", () => {
 
-    await page.screenshot({ path: "screenshot.png" });
+    let browser, page;
 
-    await browser.close();
-})();
+    beforeAll(async () => {
+        browser = await puppeteer.launch({
+            headless: true
+        });
+        page = await browser.newPage();
+        await page.goto("https://dorshinar.me", { waitUntil: "domcontentloaded" })
+    })
+
+    test("should get correct page title", async () => {
+        const pageTitle = await page.title();
+
+        expect(pageTitle).toBe('All posts | Dor Shinar');
+    });
+
+    afterAll(() => browser.close());
+})

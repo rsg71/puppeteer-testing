@@ -6,9 +6,9 @@ module.exports = {
         args: ["--no-sandbox"],
         executablePath: "chrome.exe"
     },
-    server: {
-        command: "npm run serve",
-        port: 9000,
-        launchTimeout: 180000
-    }
+    // server: {
+    //     command: "npm run serve",
+    //     port: 9000,
+    //     launchTimeout: 180000
+    // }
 };
