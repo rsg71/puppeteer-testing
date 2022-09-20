@@ -1,13 +1,23 @@
 const puppeteer = require("puppeteer");
 
-(async () => {
-    console.log('opening browser');
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto("https://dorshinar.me");
-    console.log(await page.title());
+describe("testing testing", () => {
+    it("should render the page", () => {
 
-    await page.screenshot({ path: "screenshot.png" });
+        (async () => {
+            console.log('opening browser');
+            const browser = await puppeteer.launch();
+            const page = await browser.newPage();
+            await page.goto("https://dorshinar.me");
+            const pageTitle = await page.title();
+            console.log(await page.title());
 
-    await browser.close();
-})();
+            expect(pageTitle).toBe('All posts | Dor Shinar');
+
+            // await page.screenshot({ path: "screenshot.png" });
+
+            await browser.close();
+        })();
+
+
+    })
+})
