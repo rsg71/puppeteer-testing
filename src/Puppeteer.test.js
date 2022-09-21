@@ -1,5 +1,8 @@
 const puppeteer = require("puppeteer");
 
+// const url = 'https://dorshinar.me';
+const url = 'http://localhost:3000';
+
 describe("testing testing", () => {
 
     let browser, page;
@@ -9,13 +12,14 @@ describe("testing testing", () => {
             headless: true
         });
         page = await browser.newPage();
-        await page.goto("https://dorshinar.me", { waitUntil: "domcontentloaded" })
+        await page.goto(url, { waitUntil: "domcontentloaded" })
     })
 
     test("should get correct page title", async () => {
         const pageTitle = await page.title();
 
-        expect(pageTitle).toBe('All posts | Dor Shinar');
+        // expect(pageTitle).toBe('All posts | Dor Shinar');
+        expect(pageTitle).toBe('React App RG');
     });
 
     afterAll(() => browser.close());
